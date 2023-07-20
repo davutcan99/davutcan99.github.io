@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Massively</a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li class="active"><a href="index.html">Projects</a></li>
+						<li><a href="generic.html">CV</a></li>
+						<li><a href="elements.html">About me</a></li>
+						<li><a href="algorithms.html">Algorithms</a></li>
+					</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									
+									<h1>Text Classification with gcn<br />
+									</h1>
+									
+								</header>
+								<div class="image main"><img src="images/gcn.png" alt="" /></div>
+								<p>
+									Text classification plays a significant role in processing and organizing large amounts of textual data.
+									
+									Conventional approaches to text classification typically rely on the use of sequential models such as recurrent neural networks (RNNs) or convolutional neural networks (CNNs). While these models can achieve good results by capturing the sequential structure of texts, they face limitations when it comes to considering relational information between words or text segments.
+									
+									This is where the use of Graph Convolutional Networks (GCNs) comes into play. GCNs are designed to model complex relationships between nodes in a graph, offering a promising solution for text classification.
+									Texts can be viewed as graphs, where words or text segments are represented as nodes, and their relationships (e.g., word similarities or co-occurrences) are represented as edges. By applying GCNs to these text graphs, we can capture the relationships between text elements and leverage their influence on classification.</p>
+									<div class="image main"><img src="images/gcn_web.png" alt="" /></div>
+									<h4>Text Classification with CNN<br />
+									</h4>
+									<div class="image main"><img src="images/Standard-CNN-on-text-classification.png" alt="" /></div>
+								<p>Convolutional Neural Networks (CNNs) are well-suited for text classification when it comes to capturing local and n-gram features in a text. Here are some scenarios where CNNs can achieve good results:
+
+									Text classification with short texts: CNNs can effectively process short texts such as headlines, tweet messages, or product reviews. Since CNNs extract local features, they can identify specific keywords or phrases in short texts well.
+									
+									Sentiment or emotion analysis: When analyzing sentiments in texts, a CNN can identify important words or expressions that indicate positive or negative moods. By capturing n-gram features, a CNN can better capture subtle nuances and contextual information in texts.
+									
+									Text classification with image descriptions: In scenarios where texts are image descriptions (e.g., image captions), CNNs can be used in conjunction with Convolutional Neural Networks for Images (CNN models) to analyze both the text and the image, enabling better classification.</p>
+									<h4>Text Classification with RNN<br />
+									</h4>
+									<div class="image main"><img src="images/tc_rnn.png" alt="" /></div>
+								<p>On the other hand, Recurrent Neural Networks (RNNs) are better suited for the following cases:
+
+									Sequential information: RNNs are well-suited for processing texts where the order of words plays a crucial role. RNNs have memory that can retain past information and utilize it for processing future words.
+									
+									Text generation: RNNs are often used for generating texts such as song lyrics, poems, or product descriptions. By utilizing the internal state, RNNs can create context-dependent texts.
+									
+									Long-term dependencies: RNNs excel at capturing long-term dependencies between words. This can be beneficial in tasks such as speech recognition or machine translation, where understanding the entire sequence is crucial.
+									
+									Overall, CNNs are effective at capturing local features in texts, while RNNs are better at modeling the sequential nature of texts and capturing long-term dependencies. The choice between CNN and RNN depends on the specific task and characteristics of the text dataset.</p>
+									<h4>Text Classification with our GCN Modell<br />
+									</h4>
+									<div class="image main"><img src="images/Ekran Görüntüsü (84).png" alt="" /></div>
+								<p>Instead of connecting documents based on their similarity and connecting words, we tried a more straightforward approach and formed the corpus based on document-document edges. On this baseline, we made various adjustments, which will be explained in the experimental section.</p>
+								<h5>Experiment 1<br />
+								</h5>
+								<p>In our first experiment, we focus on evaluating our model using two well-known datasets: Cora and Citeseer. These datasets are characterized by having pre-formed edges based on citations between the documents. This creates a graph where an edge exists between two documents if there is a citation relationship. Unlike a fully connected graph where each document is connected to every other document, there is selective connectivity here. Our model was trained over a period of 100 epochs to allow for sufficient learning. For vector representation, we used the CountVectorizer. Afterwards, we compared the performance of our model with various other models that were also tested on these datasets. Through this comparison, we can better assess and evaluate the effectiveness and accuracy of our model. It is important to note that the predefined edges in the Cora and Citeseer datasets are based on citations, allowing for a realistic representation of relationships between documents. This approach enables us to evaluate the quality and performance of our model in the context of scientific publications and their citation networks.</p>
+								<div class="image main"><img src="images/Ekran Görüntüsü (95).png" alt="" /></div>
+								<div class="image main"><img src="images/Ekran Görüntüsü (97).png" alt="" /></div>
+								<h5>Experiment 2<br />
+								</h5>
+								<p>In our second experiment, we tested our own model on the MR and R8 datasets and compared the results with various state-of-the-art models. We took a different approach than the state-of-the-art models, which create word-document and word-word edges. Our approach is solely based on connecting documents.
+
+									At the beginning of the experiment, we read the documents from the corresponding files and established a connection between each document and every other document. For edge weighting, we used the IDF method, which is also used in the state-of-the-art method by Kipf (2016), although that TF-IDF method is used to create word edges. Therefore, we also conducted the same tests using the CountVectorizer method and reported the results. The model was trained for 100 epochs. The MR dataset was reduced to 2500 documents (further information in Table 4.7), and the R8 dataset was reduced to 2007 documents (further information in Table 4.7).
+									
+									In parallel, we also ran the same dataset with the Text-GCN approach based on the state-of-the-art model and reproduced the results. Below, you will find a tabular representation as well as a figure with all the relevant information.
+									
+									In this experiment, we tested our model on the MR and R8 datasets, which were reduced to 2500 and 2007 documents, respectively, due to computational limitations. It is important to note that the other models in this comparison were trained on the complete dataset. The reduction in dataset size may impact the overall performance and generalizability of our model compared to the other models. However, this allows for an evaluation of the effectiveness of our simplified approach on a smaller scale. Please consider the difference in dataset size when interpreting the results.</p>
+									<div class="image main"><img src="images/Ekran Görüntüsü (99).png" alt="" /></div>
+									<h5>Experiment 3<br />
+									</h5>
+									<p>In our third experiment, we would like to pursue a different approach. We will still construct our graphs based on document similarity, as in Model 1, but this time we will not create a fully connected graph. Instead, we will use the cosine similarity function to decide whether an edge should be formed between two documents or not. Only if the cosine similarity is above a threshold of 0.7, an edge will be created between the documents. A similar approach is used in the work by William L. Hamilton et al., "Inductive Representation Learning on Large Graphs" ([et al, 2018c]). Our model will be trained again for 100 epochs. In this experiment, we hope to achieve better results than in the second experiment and reduce the memory (RAM) and CPU load.</p>
+								    <div class="image main"><img src="images/Ekran Görüntüsü (101).png" alt="" /></div>
+									<h5>Summary<br />
+									</h5>
+									<p>The first experiment with Model 1 based on document-document edges showed good performance, especially on citation-based datasets. In the second experiment, which focused on the absence of citations, the model's results were disappointing, despite using fully connected graphs and different vectorization methods. The third experiment improved the model's performance by using a non-fully connected graph structure and a cosine similarity measure with a threshold. Model 1 achieved excellent results on non-fully connected graphs and citation-based datasets. The model's performance significantly deteriorated in the absence of citations, even when using fully connected graphs and different vectorization methods. The third experiment yielded promising results by using a non-fully connected graph structure and a cosine similarity measure with a threshold.</p>
+								    <ul class="actions special">
+										<li><a href="https://github.com/davutcan99/gcn.git" class="button">View Code on Github</a></li>
+									</ul>
+
+
+							</section>
+
+					</div>
+
+				
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

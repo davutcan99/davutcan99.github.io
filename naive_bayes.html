@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Naive Bayes Problem - Blog</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+
+		h1 {
+			font-size: 24px;
+		}
+
+		p {
+			font-size: 16px;
+			line-height: 1.5;
+		}
+
+		code {
+			font-family: Consolas, monospace;
+			font-size: 14px;
+			background-color: #f1f1f1;
+			padding: 2px 4px;
+			border-radius: 4px;
+		}
+
+		pre {
+			background-color: #f1f1f1;
+			padding: 10px;
+			border-radius: 4px;
+			overflow-x: auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Naive Bayes Problem</h1>
+	<p>
+		In this blog post, we will discuss the Naive Bayes problem and its solution using Python. Naive Bayes is a simple yet powerful algorithm commonly used for classification tasks. It is based on Bayes' theorem and assumes that the features are conditionally independent given the class label.
+	</p>
+
+	<h2>Problem Description</h2>
+	<p>
+		The goal of the Naive Bayes problem is to classify data points into one of two classes, labeled as <code>A</code> and <code>B</code>. The input data consists of two numerical features, represented by the first and second rows of a CSV file.
+	</p>
+
+	<h2>Solution</h2>
+	<p>
+		To solve the Naive Bayes problem, we implement a Python script using the NumPy library. Below is the code for the solution:
+	</p>
+
+	<pre><code>import numpy as np
+import csv
+
+# Function to calculate variance
+def variance(points, mean):
+    return sum([(x - mean) ** 2 for x in points]) / float(len(points) - 1)
+
+# Function to calculate Gaussian probability
+def gauss(point, mean, variance):
+    exponent = np.exp(-((point - mean) ** 2 / (2 * variance)))
+    return (1 / (np.sqrt(2 * np.pi * variance))) * exponent
+
+# Function to calculate misclassification
+def missclassification(a, b, label):
+    result = ""
+    if a > b:
+        result = "A"
+    else:
+        result = "B"
+
+    if label != result:
+        return 1
+    else:
+        return 0
+
+# Function to perform Naive Bayes classification
+def Naive_Bayes(data):
+    errors = 0
+    label = []
+    erste_reihe = []
+    zweite_reihe = []
+
+    file = open(data)
+    csvreader = csv.reader(file)
+    rows = list(csvreader)
+    file.close()
+
+    for row in rows:
+        label.append(row[0])
+        erste_reihe.append(float(row[1]))
+        zweite_reihe.append(float(row[2]))
+
+    half = int(len(rows) / 2)
+    total = len(rows)
+
+    a_data_points_first_row = erste_reihe[0:half]
+    b_data_points_first_row = erste_reihe[half:total]
+    a_data_points_second_row = zweite_reihe[0:half]
+    b_data_points_second_row = zweite_reihe[half:total]
+
+    label_a_count = label.count("A")
+    label_b_count = label.count("B")
+
+    a_propability = float(label_a_count / len(label))
+    b_propability = float(label_b_count / len(label))
+
+    a_mean_first_row = np.mean(a_data_points_first_row)
+    a_mean_second_row = np.mean(a_data_points_second_row)
+    b_mean_first_row = np.mean(b_data_points_first_row)
+    b_mean_second_row = np.mean(b_data_points_second_row)
+
+    a_variance_first_row = variance(a_data_points_first_row, a_mean_first_row)
+    a_variance_second_row = variance(a_data_points_second_row, a_mean_second_row)
+    b_variance_first_row = variance(b_data_points_first_row, b_mean_first_row)
+    b_variance_second_row = variance(b_data_points_second_row, b_mean_second_row)
+
+    for i in range(len(rows)):
+        a_gauss_first_row = gauss(erste_reihe[i], a_mean_first_row, a_variance_first_row)
+        a_gauss_second_row = gauss(zweite_reihe[i], a_mean_second_row, a_variance_second_row)
+        b_gauss_first_row = gauss(erste_reihe[i], b_mean_first_row, b_variance_first_row)
+        b_gauss_second_row = gauss(zweite_reihe[i], b_mean_second_row, b_variance_second_row)
+
+        a_total_probability = a_propability * a_gauss_first_row * a_gauss_second_row
+        b_total_probability = b_propability * b_gauss_first_row * b_gauss_second_row
+
+        errors += missclassification(a_total_probability, b_total_probability, label[i])
+
+    print("{} {} {} {} {}".format(a_mean_first_row, a_variance_first_row, a_mean_second_row, a_variance_second_row, a_propability))
+    print("{} {} {} {} {}".format(b_mean_first_row, b_variance_first_row, b_mean_second_row, b_variance_second_row, b_propability))
+    print(errors)
+
+# Main function
+def main():
+    data = "your_data.csv"  # Replace with your CSV file
+    Naive_Bayes(data)
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+	<h2>Conclusion</h2>
+	<p>
+		In this blog post, we discussed the Naive Bayes problem and provided a Python solution using the NumPy library. We covered the implementation details and explained the steps involved in the classification process. Naive Bayes is a versatile algorithm that can be applied to various classification tasks, making it a valuable tool in machine learning and data analysis.
+	</p>
+
+	<p>
+		Feel free to explore and experiment with the code provided to gain a deeper understanding of the Naive Bayes algorithm and its application in real-world scenarios.
+	</p>
+</body>
+</html>
+
+
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

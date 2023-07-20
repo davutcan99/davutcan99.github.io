@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>LeetCode Problem: Container With Most Water</title>
+</head>
+<body>
+    <h1>LeetCode Problem: Container With Most Water</h1>
+
+    <h2>Problem Description</h2>
+    <p>The problem "Container With Most Water" presents a scenario where there are n vertical lines drawn on a graph. The height of each vertical line is given in an integer array called "height." The two endpoints of each line are represented by coordinates (i, 0) and (i, height[i]). The task is to find two lines that, together with the x-axis, form a container such that it contains the most water.</p>
+    <p>The goal is to determine the maximum amount of water that the container can store. It is important to note that the container cannot be slanted, and the water level should align with the x-axis.</p>
+    <p>Let's consider an example to understand the problem requirements:</p>
+    <h3>Example 1:</h3>
+    <p>Input: height = [1, 8, 6, 2, 5, 4, 8, 3, 7]</p>
+    <p>Output: 49</p>
+    <p>Explanation: The vertical lines are represented by the array [1, 8, 6, 2, 5, 4, 8, 3, 7]. In this case, the maximum area of water (blue section) that the container can contain is 49.</p>
+
+    <h2>Approach</h2>
+    <p>To solve this problem, we can use a brute-force approach that considers every possible pair of lines and calculates the area of the container formed by the lines and the x-axis. We then keep track of the maximum area encountered so far and return it as the result.</p>
+    <p>Here's the algorithm:</p>
+    <ol>
+        <li>Initialize a variable <code>max</code> to keep track of the maximum area encountered.</li>
+        <li>Iterate through each line of the array, starting from the first line.
+            <ul>
+                <li>Initialize a variable <code>count</code> to 1, representing the width of the container.</li>
+                <li>Initialize a variable <code>zahl</code> to 0, representing the calculated area of the container.</li>
+                <li>Iterate through the remaining lines, starting from the line after the current line.
+                    <ul>
+                        <li>If the height of the current line is greater than the height of the initial line, calculate the area of the container using the height of the initial line and the width given by <code>count</code>.</li>
+                        <li>If the height of the current line is less than or equal to the height of the initial line, calculate the area of the container using the height of the current line and the width given by <code>count</code>.</li>
+                        <li>If the calculated area <code>zahl</code> is greater than or equal to the current maximum area <code>max</code>, update <code>max</code> with the new maximum area.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>After iterating through all possible pairs of lines, return <code>max</code> as the maximum amount of water the container can store.</li>
+    </ol>
+
+    <h2>Solution</h2>
+    <p>Based on the problem requirements and the approach outlined above, we can implement the following solution:</p>
+    <pre><code>
+class Solution {
+    public int maxArea(int[] height) {
+        int max = 0;
+        int count;
+        for (int i = 0; i < height.length; i++) {
+            count = 1;
+            int zahl = 0;
+            for (int j = i + 1; j < height.length; j++) {
+                if (height[i] &lt; height[j]) {
+                    zahl = count * height[i];
+                    count++;
+                } else if (height[i] >= height[j]) {
+                    zahl = count * height[j];
+                    count++;
+                }
+                if (zahl >= max) {
+                    max = zahl;
+                }
+            }
+        }
+        return max;
+    }
+}
+    </code></pre>
+
+    <h2>Conclusion</h2>
+    <p>In this blog post, we discussed the LeetCode problem "Container With Most Water." We analyzed the problem statement and provided a step-by-step approach to solve it. We also presented a Java implementation of the solution using a brute-force approach.</p>
+    <p>The problem highlights the importance of considering different possibilities and optimizing the area calculation for efficient solutions. By iterating through the lines and calculating the area of each container, we can determine the maximum amount of water the container can store.</p>
+    <p>Feel free to try out the problem on LeetCode and implement the solution in your preferred programming language. Happy coding!</p>
+
+    <h3>Author</h3>
+    <p>Author: Emre Davud Can</p>
+</body>
+</html>
+
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

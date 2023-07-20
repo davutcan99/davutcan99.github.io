@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo"></a>
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>LeetCode Problem: Remove Duplicates from Sorted Array</title>
+    </head>
+    <body>
+        <h1>LeetCode Problem: Remove Duplicates from Sorted Array</h1>
+    
+        <h2>Problem Description</h2>
+        <p>The problem "Remove Duplicates from Sorted Array" asks us to remove duplicate elements from a given sorted array in-place. The goal is to modify the array so that each unique element appears only once, and return the number of unique elements. The relative order of the elements should be maintained.</p>
+        <p>To clarify the requirements, let's consider an example. Given an input array <code>nums = [1, 1, 2]</code>, the expected output is <code>2</code>, and the modified array <code>nums</code> should be <code>[1, 2, _]</code>, where the underscore represents any value.</p>
+    
+        <h2>Approach</h2>
+        <p>To solve this problem, we can use a two-pointer technique. We'll maintain two pointers: one for the current unique element and another for iterating through the array.</p>
+        <p>Here's the algorithm:</p>
+        <ol>
+            <li>Initialize a variable <code>k</code> to keep track of the unique elements.</li>
+            <li>Iterate through the array starting from the second element.</li>
+            <li>Compare the current element with the previous element.
+                <ul>
+                    <li>If they are equal, it means we have encountered a duplicate. Skip this element.</li>
+                    <li>If they are different, it means we have found a new unique element. Increment <code>k</code> and assign the current element to the <code>k</code>-th position.</li>
+                </ul>
+            </li>
+            <li>Return <code>k</code>, which represents the number of unique elements.</li>
+        </ol>
+        <p>Let's implement the solution in Java:</p>
+        <pre><code>
+    class Solution {
+        public int removeDuplicates(int[] nums) {
+            int k = 1; // Number of unique elements
+            for (int i = 1; i &lt; nums.length; i++) {
+                if (nums[i] != nums[i - 1]) {
+                    nums[k] = nums[i];
+                    k++;
+                }
+            }
+            return k;
+        }
+    }
+        </code></pre>
+    
+        <h2>Custom Judge</h2>
+        <p>To verify the correctness of our solution, a custom judge will test our implementation. The judge will compare the modified array <code>nums</code> with an expected answer array <code>expectedNums</code> of the correct length.</p>
+        <p>Here's the code that the judge will run:</p>
+        <pre><code>
+    int[] nums = [...]; // Input array
+    int[] expectedNums = [...]; // The expected answer with correct length
+    
+    int k = removeDuplicates(nums); // Calls your implementation
+    
+    assert k == expectedNums.length;
+    for (int i = 0; i &lt; k; i++) {
+        assert nums[i] == expectedNums[i];
+    }
+        </code></pre>
+        <p>If all assertions pass, it indicates that our solution is correct and will be accepted.</p>
+    
+        <h2>Example</h2>
+        <p>Let's take a look at an example to further understand the problem:</p>
+        <h3>Input:</h3>
+        <pre><code>nums = [1, 1, 2]</code></pre>
+        <h3>Output:</h3>
+        <pre><code>2, nums = [1, 2, _]</code></pre>
+        <p>The function should return <code>2</code>, with the first two elements of <code>nums</code> being <code>1</code> and <code>2</code>, respectively. The remaining element is not important (hence represented by an underscore).</p>
+    
+        <h2>Constraints</h2>
+        <ul>
+            <li><code>1 ≤ nums.length ≤ 3 * 10^4</code></li>
+            <li><code>-100 ≤ nums[i] ≤ 100</code></li>
+            <li><code>nums</code> is sorted in non-decreasing order.</li>
+        </ul>
+    
+        <h2>Conclusion</h2>
+        <p>In this blog post, we explored the LeetCode problem "Remove Duplicates from Sorted Array." We discussed the problem statement, presented an approach to solve it, and provided a Java implementation of the solution. We also discussed the custom judge and the example to better understand the problem requirements.</p>
+        <p>By using the two-pointer technique, we can efficiently remove duplicates from a sorted array in-place and return the number of unique elements. This problem demonstrates the importance of array manipulation techniques and the efficiency gained from leveraging the sorted nature of the array.</p>
+       
+    
+        <h3>Author</h3>
+        <p>Author: Emre Davud Can</p>
+    </body>
+    </html>
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

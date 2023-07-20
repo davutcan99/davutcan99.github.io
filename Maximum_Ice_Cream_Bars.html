@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="generic.html">CV</a></li>
+							<li><a href="elements.html">About me</a></li>
+                            <li class="active"><a href="algorithms.html">Algorithms</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>LeetCode Problem: Maximum Ice Cream Bars</title>
+    </head>
+    <body>
+        <h1>LeetCode Problem: Maximum Ice Cream Bars</h1>
+    
+        <h2>Problem Description</h2>
+        <p>The problem "Maximum Ice Cream Bars" presents a scenario where a boy wants to buy ice cream bars from a store. The store offers n ice cream bars, and the prices of the ice cream bars are given in an array called "costs." The boy has a certain number of coins to spend and wants to buy as many ice cream bars as possible within the given budget.</p>
+        <p>The task is to determine the maximum number of ice cream bars the boy can buy with the available coins. It is important to note that the boy can buy the ice cream bars in any order.</p>
+        <p>Let's consider an example to understand the problem requirements:</p>
+        <h3>Example 1:</h3>
+        <p>Input: costs = [1, 3, 2, 4, 1], coins = 7</p>
+        <p>Output: 4</p>
+        <p>Explanation: The boy can buy ice cream bars at indices 0, 1, 2, and 4 for a total price of 1 + 3 + 2 + 1 = 7.</p>
+    
+        <h2>Approach</h2>
+        <p>To solve this problem, we can use the counting sort algorithm. The idea is to sort the ice cream bar prices in ascending order using counting sort. Then, starting from the lowest price, we can iteratively buy ice cream bars until we run out of coins or reach a price that exceeds the available coins.</p>
+        <p>Here's the algorithm:</p>
+        <ol>
+            <li>Initialize a variable <code>sum</code> to keep track of the total cost and a variable <code>result</code> to count the number of ice cream bars bought.</li>
+            <li>Sort the array <code>costs</code> in ascending order.</li>
+            <li>Iterate through the sorted array, starting from the lowest price.
+                <ul>
+                    <li>Add the current price to <code>sum</code>.</li>
+                    <li>If the available coins (<code>coins</code>) minus <code>sum</code> is still non-negative, increment <code>result</code> (indicating that an ice cream bar is bought).</li>
+                    <li>If the available coins minus <code>sum</code> becomes negative, it means the boy cannot afford the current price. In this case, return <code>result</code> as the maximum number of ice cream bars that can be bought.</li>
+                </ul>
+            </li>
+            <li>If the entire array is traversed and no return statement is encountered, it means the boy can buy all the ice cream bars within the available coins. Return <code>result</code> as the maximum number of ice cream bars that can be bought.</li>
+        </ol>
+        <p>Let's implement the solution in Java:</p>
+        <pre><code>
+    class Solution {
+        public int maxIceCream(int[] costs, int coins) {
+             int sum = 0;
+             int result = 0;
+             Arrays.sort(costs);
+             for (int i = 0; i &lt; costs.length; i++) {
+                 sum += costs[i];
+                 if (coins - sum &gt;= 0) {
+                     result++;
+                 } else {
+                     return result;
+                 }
+             }
+             return result;
+        }
+    }
+        </code></pre>
+    
+        <h2>Conclusion</h2>
+        <p>In this blog post, we discussed the LeetCode problem "Maximum Ice Cream Bars." We analyzed the problem statement and provided a step-by-step approach to solve it. We also presented a Java implementation of the solution using the counting sort algorithm.</p>
+        <p>The problem emphasizes the importance of understanding sorting algorithms and their applications in solving real-world problems. By leveraging counting sort and cleverly iterating through the sorted array, we can efficiently determine the maximum number of ice cream bars the boy can buy within the given budget.</p>
+        <p>Feel free to try out the problem on LeetCode and implement the solution in your preferred programming language. Happy coding!</p>
+    
+        <h3>Author</h3>
+        <p>Author: Emre Davud Can</p>
+    </body>
+    </html>
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

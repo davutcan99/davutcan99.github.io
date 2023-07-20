@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li class="active"><a href="chatgpt.html">CV</a></li>
+							<li><a href="elements.html">About me</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									
+									<h1>AI APPS WITH OPENAI
+                                        CHATBOT WITH GPT-3/3.5<br />
+									</h1>
+									
+								</header>
+								<div class="image main"><img src="images/chatbot.png" alt="" /></div>
+								<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
+
+  
+  <h2>Introduction:</h2>
+  <p>In this blog post, we will explore the process of creating a chatbot app using ChatGPT, a powerful language model developed by OpenAI. The chatbot will be integrated into a Flask web application, allowing users to interact with the AI-powered chatbot through a simple user interface. We will cover the setup, implementation, and deployment of the chatbot app, showcasing its capabilities and potential use cases.</p>
+
+  <h2>1. Setting Up the Environment:</h2>
+  <p>To begin, make sure you have the necessary dependencies installed, including Flask and the OpenAI Python library. You can use pip to install these dependencies:</p>
+  <pre>
+    pip install Flask
+    pip install openai
+  </pre>
+
+  <h2>2. Initializing the Flask App:</h2>
+  <p>First, import the required modules and initialize a Flask app:</p>
+  <pre>
+    from flask import Flask, render_template, request, jsonify
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+
+    app = Flask(__name__)
+    limiter = Limiter(app)
+  </pre>
+
+  <h2>3. Defining the Routes:</h2>
+  <p>Next, define the routes that will handle user requests. In this case, we'll have two routes: the index route to render the chatbot interface and the predict route to handle user messages and generate responses:</p>
+  <pre>
+    @app.route("/")
+    @limiter.limit("3/second; 200/minute; 1200/hour")
+    def index():
+        return render_template("base.html")
+
+    @app.route("/predict", methods=["POST"])
+    def predict():
+        text = request.get_json().get("message")
+        if len(text) > 3000:
+            message = {
+                "answer": "I'm sorry, your query has too many characters for me to process. If you would like to speak to a live agent, say 'I would like to speak to a live agent'"
+            }
+            return jsonify(message)
+        response = send_message(text)
+        message = {"answer": response}
+        return jsonify(message)
+  </pre>
+
+  <h2>4. Implementing the ChatGPT Integration:</h2>
+  <p>To integrate ChatGPT into the chatbot app, we will use the OpenAI Python library. Import the required modules and set up the API key:</p>
+  <pre>
+    import openai
+    from openai import Completion
+
+    openai.api_key = "YOUR_API_KEY"
+  </pre>
+
+  <p>Create a function called <code>send_message</code> that takes a user message as input and generates a response using ChatGPT:</p>
+  <pre>
+    def send_message(message):
+        response = Completion.create(
+            engine="text-davinci-003",
+            prompt=message,
+            max_tokens=3000,
+            temperature=0.7,
+        )
+        return response.get('choices')[0].get('text')
+  </pre>
+
+  <h2>5. Running the Chatbot App:</h2>
+  <p>Finally, run the Flask app to start the chatbot server:</p>
+  <pre>
+    if __name__ == "__main__":
+        app.run(debug=True)
+  </pre>
+
+  <h2>Conclusion:</h2>
+  <p>In this blog post, we covered the process of building a chatbot app using ChatGPT and Flask. We learned how to set up the Flask environment, define routes for user interactions, integrate the OpenAI library for generating responses using ChatGPT, and run the chatbot app. This project demonstrates the power of AI-driven chatbots and their potential to enhance user experiences in various applications, including customer support, information retrieval, and more. </p>
+</body>
+</html>
+<ul class="actions special">
+    <li><a href="https://github.com/davutcan99/gcn.git" class="button">View Code on Github</a></li>
+</ul>
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

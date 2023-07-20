@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>LeetCode Problem: Number of Submatrices That Sum to Target</title>
+</head>
+<body>
+    <h1>LeetCode Problem: Number of Submatrices That Sum to Target</h1>
+
+    <h2>Problem Description</h2>
+    <p>The problem "Number of Submatrices That Sum to Target" presents a scenario where we are given a matrix and a target value. The task is to determine the number of non-empty submatrices in the matrix whose sum is equal to the target.</p>
+    <p>A submatrix is defined by specifying the top-left and bottom-right coordinates, (x1, y1) and (x2, y2) respectively. A submatrix contains all the cells within the specified coordinates.</p>
+    <p>Here's an example to illustrate the problem requirements:</p>
+    <h3>Example:</h3>
+    <p>Input: matrix = [[0, 1, 0], [1, 1, 1], [0, 1, 0]], target = 0</p>
+    <p>Output: 4</p>
+    <p>Explanation: There are four 1x1 submatrices that only contain 0.</p>
+
+    <h2>Solution</h2>
+    <p>To solve this problem, we can use a combination of matrix manipulation and hashmap. The solution can be implemented with the following steps:</p>
+    <ol>
+        <li>Create a new matrix <code>A</code> of the same size as the input matrix <code>matrix</code>.</li>
+        <li>Iterate over each row of the matrix and calculate the cumulative sum for each cell.</li>
+        <li>Store the cumulative sums in the matrix <code>A</code>, where <code>A[i][j]</code> represents the sum of all cells from (0, 0) to (i, j).</li>
+        <li>Initialize a hashmap <code>hm</code> to store the frequency of sum values.</li>
+        <li>Iterate over all possible submatrices by considering all combinations of the top-left and bottom-right coordinates.</li>
+        <li>For each submatrix, calculate its sum by subtracting the cumulative sums of the cells outside the submatrix.</li>
+        <li>Check if the difference between the submatrix sum and the target exists in the hashmap <code>hm</code>.</li>
+        <li>If the difference exists, increment the counter by the frequency of the difference value.</li>
+        <li>Update the hashmap with the current submatrix sum frequency.</li>
+        <li>Return the final counter as the number of non-empty submatrices that sum to the target.</li>
+    </ol>
+    <p>Based on the problem requirements and your provided solution, we can implement the following solution:</p>
+    <pre><code>
+class Solution {
+    public int numSubmatrixSumTarget(int[][] matrix, int target) {
+        int h = matrix.length;
+        int w = matrix[0].length;
+        int A[][] = new int[h][w];
+        int sum;
+        int counter = 0;
+
+        // Calculate cumulative sums for each cell
+        for (int i = 0; i < h; i++) {
+            sum = 0;
+            for (int j = 0; j < w; j++) {
+                sum += matrix[i][j];
+                A[i][j] = sum;
+                if (i > 0) {
+                    A[i][j] += A[i - 1][j];
+                }
+            }
+        }
+
+        // Use hashmap to store sum frequencies
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        // Iterate over all possible submatrices
+        for (int i = 0; i < w; i++) {
+            for (int j = i; j < w; j++) {
+                hm.put(0, 1);
+                for (int k = 0; k < h; k++) {
+                    sum = A[k][j];
+                    if (i > 0) {
+                        sum -= A[k][i - 1];
+                    }
+                    if (hm.get(sum - target) != null) {
+                        counter += hm.get(sum - target);
+                    }
+                    hm.put(sum, hm.getOrDefault(sum, 0) + 1);
+                }
+                hm.clear();
+            }
+        }
+        return counter;
+    }
+}
+</code></pre>
+
+    <h2>Complexity Analysis</h2>
+    <p>The time complexity of this solution is O(w^2 * h), where w and h are the width and height of the input matrix, respectively. This is because we iterate over all possible combinations of the top-left and bottom-right coordinates, which takes O(w^2) iterations, and for each iteration, we calculate the sum of the submatrix, which takes O(h) operations. The space complexity is O(w * h) to store the cumulative sums in the matrix <code>A</code> and the hashmap <code>hm</code>.</p>
+
+    <h2>Conclusion</h2>
+    <p>In this blog post, we discussed the LeetCode problem "Number of Submatrices That Sum to Target." We explained the problem requirements and provided a step-by-step solution based on your provided code. The solution utilizes matrix manipulation and a hashmap to count the number of submatrices that sum to the target. We also analyzed the time and space complexities of the solution.</p>
+    
+</body>
+</html>
+
+
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

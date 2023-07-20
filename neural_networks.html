@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Neural Networks - Blog</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+
+		h1 {
+			font-size: 24px;
+		}
+
+		p {
+			font-size: 16px;
+			line-height: 1.5;
+		}
+
+		code {
+			font-family: Consolas, monospace;
+			font-size: 14px;
+			background-color: #f1f1f1;
+			padding: 2px 4px;
+			border-radius: 4px;
+		}
+
+		pre {
+			background-color: #f1f1f1;
+			padding: 10px;
+			border-radius: 4px;
+			overflow-x: auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Neural Networks</h1>
+	<p>
+		In this blog post, we will discuss neural networks and their implementation using Python. Neural networks are powerful machine learning models inspired by the structure and function of the human brain. They can be used for various tasks such as classification, regression, and pattern recognition.
+	</p>
+
+	<h2>Problem Description</h2>
+	<p>
+		The goal of the neural network problem is to train a model to predict the output for a given set of input data. The input data consists of two numerical features, represented by the first and second columns of a CSV file. The target output is represented by the third column.
+	</p>
+
+	<h2>Solution</h2>
+	<p>
+		To solve the neural network problem, we implement a Python script using the NumPy library. Below is the code for the solution:
+	</p>
+
+	<pre><code>import numpy as np
+import csv
+import argparse
+
+def feed_forward(data):
+    a = data[0]
+    file = open(a)
+    csvreader = csv.reader(file)
+
+    rows = []
+    for row in csvreader:
+        rows.append(row)
+    file.close()
+
+    w1 = -0.30000
+    w2 = -0.10000
+    w3 = 0.20000
+    w4 = 0.10000
+    w5 = -0.40000
+    w6 = 0.40000
+    w7 = 0.2000
+    w8 = -0.50000
+    w9 = 0.30000
+    w10 = 0.10000
+    w11 = 0.30000
+    w12 = -0.40000
+    w13 = -0.10000
+    h1 = 0
+    h2 = 0
+    h3 = 0
+    output = 0
+    iterations = data[2]
+    learn_rate = data[1]
+    count = 0
+    print("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}".format("-", "-", "-",
+                                                                                           "-", "-",
+                                                                                           "-", "-",
+                                                                                           "-", "-", "-",
+                                                                                           "-", w7, w1, w6, w8,
+                                                                                           w2, w5, w9, w3, w4, w13, w10,
+                                                                                           w11, w12))
+
+
+    for j in range(iterations):
+        for i in range(len(rows)):
+            a = float(rows[i][0])
+            b = float(rows[i][1])
+            target = float(rows[i][2])
+
+            h1 = float(a * w1 + b * w6 + 1 * w7)
+            h2 = float(a * w2 + b * w5 + 1 * w8)
+            h3 = float(a * w3 + b * w4 + 1 * w9)
+
+            h1_sig_value = sigmoid_function(h1)
+            h2_sig_value = sigmoid_function(h2)
+            h3_sig_value = sigmoid_function(h3)
+
+            output = h1_sig_value * w10 + h2_sig_value * w11 + h3_sig_value * w12 + 1 * w13
+            output_sig_value = sigmoid_function(output)
+
+            delta_output = output_sig_value * (1 - output_sig_value) * (target - output_sig_value)
+            delta_h1 = h1_sig_value * (1 - h1_sig_value) * w10 * delta_output
+            delta_h2 = h2_sig_value * (1 - h2_sig_value) * w11 * delta_output
+            delta_h3 = h3_sig_value * (1 - h3_sig_value) * w12 * delta_output
+
+            w1 = w1 + learn_rate * delta_h1 * a
+            w2 = w2 + learn_rate * delta_h2 * a
+            w3 = w3 + learn_rate * delta_h3 * a
+            w4 = w4 + learn_rate * delta_h3 * b
+            w5 = w5 + learn_rate * delta_h2 * b
+            w6 = w6 + learn_rate * delta_h1 * b
+            w7 = w7 + learn_rate * delta_h1 * 1
+            w8 = w8 + learn_rate * delta_h2 * 1
+            w9 = w9 + learn_rate * delta_h3 * 1
+            w10 = w10 + learn_rate * delta_output * h1_sig_value
+            w11 = w11 + learn_rate * delta_output * h2_sig_value
+            w12 = w12 + learn_rate * delta_output * h3_sig_value
+            w13 = w13 + learn_rate * delta_output * 1
+            print("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}".format(a, b, h1_sig_value, h2_sig_value, h3_sig_value, output_sig_value, target, delta_h1, delta_h2, delta_h3, delta_output, w7, w1, w6, w8, w2, w5, w9, w3, w4, w13, w10, w11, w12))
+
+def sigmoid_function(h):
+    return 1 / (1 + np.exp(-h))
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=str)
+    parser.add_argument("-e", "--eta", type=float, default=0.2)
+    parser.add_argument("-t", "--iterations", type=int, default=2)
+    args = parser.parse_args()
+    data = (args.data, args.eta, args.iterations)
+    feed_forward(data)
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+	<h2>Conclusion</h2>
+	<p>
+		In this blog post, we explored the concept of neural networks and provided a Python implementation using the NumPy library. Neural networks are versatile models that can be trained to solve various machine learning problems, including classification, regression, and pattern recognition.
+	</p>
+
+	<p>
+		Feel free to experiment with the code provided and apply neural networks to your own datasets. It's an exciting field with a wide range of applications!
+	</p>
+</body>
+</html>
+
+
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

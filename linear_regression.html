@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+					</header>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Projects</a></li>
+                        <li><a href="generic.html">CV</a></li>
+                        <li><a href="elements.html">About me</a></li>
+                        <li class="active"><a href="algorithms.html">Algorithms</a></li>
+                    </ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						
+<html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Linear Regression with Gradient Descent</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 50px;
+        }
+        h1 {
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 20px;
+        }
+        pre {
+          background-color: #f5f5f5;
+          padding: 10px;
+          overflow-x: auto;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Linear Regression with Gradient Descent</h1>
+    
+      <h2>Introduction</h2>
+      <p>In this blog post, we'll explore the concept of linear regression and its implementation using gradient descent. Linear regression is a powerful technique for modeling the relationship between variables and making predictions. Gradient descent is an optimization algorithm commonly used to train machine learning models, including linear regression.</p>
+    
+      <h2>Code Implementation</h2>
+      <p>Let's take a look at the Python code that implements linear regression with gradient descent:</p>
+      <pre><code>import numpy as np
+    import csv
+    import argparse
+    
+    def gradient_descent(daten):
+        # Read data from CSV file
+        a = daten[0]
+        file = open(a)
+        csvreader = csv.reader(file)
+        rows = []
+        for row in csvreader:
+            rows.append(row)
+        file.close()
+    
+        # Initialize variables
+        w0_aktuell = float(0)
+        w1_aktuell = float(0)
+        w2_aktuell = float(0)
+        learning_rate = daten[1]
+        threshold = daten[2]
+        n = 1000
+        i = 0
+        sse = 0
+        sse_son = -1
+        iteration = 0
+    
+        # Perform gradient descent
+        while abs(sse - sse_son) > threshold:
+            sse_son = sse
+            sse = 0
+            x = w0_aktuell
+            y = w1_aktuell
+            z = w2_aktuell
+    
+            while i < n:
+                x1 = float(rows[i][0])
+                x2 = float(rows[i][1])
+                target_value = float(rows[i][2])
+    
+                function = float(1 * x + x1 * y + x2 * z)
+    
+                gradient0 = (target_value - function) * 1
+                gradient1 = (target_value - function) * x1
+                gradient2 = (target_value - function) * x2
+    
+                w0_aktuell = w0_aktuell + learning_rate * gradient0
+                w1_aktuell = w1_aktuell + learning_rate * gradient1
+                w2_aktuell = w2_aktuell + learning_rate * gradient2
+    
+                sse += pow((target_value - function), 2)
+                i += 1
+    
+            print("{},{},{},{},{}".format(iteration, x, y, z, sse))
+            i = 0
+            iteration += 1
+    
+    def main():
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--data", type=str)
+        parser.add_argument("-e", "--eta", type=float, default=0.00005)
+        parser.add_argument("-t", "--threshold", type=float, default=0.0001)
+        args = parser.parse_args()
+        Daten=(args.data,args.eta,args.threshold)
+    
+        gradient_descent(Daten)
+    
+    if __name__ == "__main__":
+        main()</code></pre>
+    
+      <h2>Explanation</h2>
+      <p>The code starts by importing the necessary libraries and defining the <code>gradient_descent</code> function. The function takes the input data, learning rate, and threshold as parameters.</p>
+    
+      <p>Inside the <code>gradient_descent</code> function, the data is read from a CSV file. The algorithm then initializes the weights and other variables required for gradient descent. It defines the number of iterations and sets the initial sum of squared errors (SSE) values.</p>
+    
+      <p>The code enters a while loop that continues until the difference between the current SSE and the previous SSE is less than the threshold. Inside the loop, it performs gradient descent by updating the weights based on the gradients and learning rate.</p>
+    
+      <p>The inner loop iterates over the data points and calculates the predicted value using the current weights. It calculates the gradients for each weight and updates them accordingly. It also calculates the SSE for each iteration.</p>
+    
+      <p>Finally, the code prints the iteration number, current weight values, and SSE at each iteration.</p>
+    
+      <h2>Usage</h2>
+      <p>To use the script, follow these steps:</p>
+      <ol>
+        <li>Create a CSV file containing your data, where each row represents a data point with the input features and target value.</li>
+        <li>Run the script from the command line with the following arguments:</li>
+      </ol>
+      <pre><code>python linear_regression.py --data &lt;path_to_data&gt; --eta &lt;learning_rate&gt; --threshold &lt;threshold_value&gt;</code></pre>
+    
+      <p>The <code>--data</code> argument specifies the path to your data file, the <code>--eta</code> argument sets the learning rate (default is 0.00005), and the <code>--threshold</code> argument sets the convergence threshold (default is 0.0001).</p>
+    
+      <h2>Conclusion</h2>
+      <p>Linear regression with gradient descent is a powerful technique for modeling and predicting relationships between variables. By iteratively updating the weights based on the gradients, the algorithm finds the best-fit line that minimizes the sum of squared errors. This allows us to make predictions based on new input data.</p>
+    
+      <p>In this blog post, we've explored the implementation of linear regression using gradient descent in Python. I hope this explanation and code example help you understand the concept and apply it to your own datasets. Happy learning!</p>
+    </body>
+    </html>
+    
+
+
+    
+    
+									
+								
+							</section>
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
